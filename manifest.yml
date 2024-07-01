@@ -1,0 +1,27 @@
+modules:
+  jira:uiModifications:
+    - key: autofill-hello-world-ui-modifications
+      title: autofill
+      resource: uiModificationsMain
+  trigger:
+    - key: autofill-hello-world-ui-modifications-install
+      function: main
+      events:
+        - avi:forge:installed:app
+  function:
+    - key: main
+      handler: index.run
+resources:
+  - key: uiModificationsMain
+    path: static/hello-world/build
+permissions:
+  scopes:
+    - manage:jira-configuration
+    - read:jira-user
+    - read:jira-work
+    - write:jira-work
+
+app:
+  runtime:
+    name: nodejs18.x
+  id: ari:cloud:ecosystem::app/a24d2dbf-cbff-4820-acc5-049c6b1f0b7b
